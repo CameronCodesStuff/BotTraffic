@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Traffic Tool</title>
+    <script>
+        async function startBots() {
+            const targetUrl = document.getElementById("targetUrl").value;
+            const botCount = document.getElementById("botCount").value;
+
+            if (!targetUrl || !botCount) {
+                alert("Please enter both a target URL and the number of bots.");
+                return;
+            }
+
+            const response = await fetch("https://<your-replit-url>.repl.co/start-bots", { // Replace <your-replit-url> with your actual Replit project URL
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ targetUrl, botCount })
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        }
+    </script>
+</head>
+<body>
+    <h1>Bot Traffic Tool</h1>
+    <label for="targetUrl">Target URL:</label>
+    <input type="text" id="targetUrl" placeholder="https://example.com"><br><br>
+
+    <label for="botCount">Number of Bots:</label>
+    <input type="number" id="botCount" min="1" value="10"><br><br>
+
+    <button onclick="startBots()">Start Bots</button>
+
+    <p><small>Note: Make sure your server is running before starting the bots.</small></p>
+</body>
+</html>
